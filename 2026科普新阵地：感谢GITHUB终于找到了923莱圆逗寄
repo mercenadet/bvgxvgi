@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+www.m.cqsdkjc.com/Article/details/4576169.shtml<br>
+www.m.cqsdkjc.com/Article/details/7244466.shtml<br>
+www.m.cqsdkjc.com/Article/details/8355830.shtml<br>
+www.m.cqsdkjc.com/Article/details/8668982.shtml<br>
+www.m.cqsdkjc.com/Article/details/3083021.shtml<br>
+www.m.cqsdkjc.com/Article/details/0966218.shtml<br>
+www.m.cqsdkjc.com/Article/details/0925877.shtml<br>
+www.m.cqsdkjc.com/Article/details/8408253.shtml<br>
+www.m.cqsdkjc.com/Article/details/8061109.shtml<br>
+www.m.cqsdkjc.com/Article/details/4204026.shtml<br>
+www.m.cqsdkjc.com/Article/details/1380029.shtml<br>
+www.m.cqsdkjc.com/Article/details/3619248.shtml<br>
+www.m.cqsdkjc.com/Article/details/2702506.shtml<br>
+www.m.cqsdkjc.com/Article/details/5793340.shtml<br>
+www.m.cqsdkjc.com/Article/details/1040029.shtml<br>
+www.m.cqsdkjc.com/Article/details/5430671.shtml<br>
+www.m.cqsdkjc.com/Article/details/3270263.shtml<br>
+www.m.cqsdkjc.com/Article/details/9935701.shtml<br>
+www.m.cqsdkjc.com/Article/details/7274004.shtml<br>
+www.m.cqsdkjc.com/Article/details/3588458.shtml<br>
+www.m.cqsdkjc.com/Article/details/9493054.shtml<br>
+www.m.cqsdkjc.com/Article/details/8910051.shtml<br>
+www.m.cqsdkjc.com/Article/details/0885794.shtml<br>
+www.m.cqsdkjc.com/Article/details/3899201.shtml<br>
+www.m.cqsdkjc.com/Article/details/6111457.shtml<br>
+www.m.cqsdkjc.com/Article/details/2597160.shtml<br>
+www.m.cqsdkjc.com/Article/details/8305910.shtml<br>
+www.m.cqsdkjc.com/Article/details/5982282.shtml<br>
+www.m.cqsdkjc.com/Article/details/7293985.shtml<br>
+www.m.cqsdkjc.com/Article/details/0939849.shtml<br>
+www.m.cqsdkjc.com/Article/details/2808712.shtml<br>
+www.m.cqsdkjc.com/Article/details/6764016.shtml<br>
+www.m.cqsdkjc.com/Article/details/5982851.shtml<br>
+www.m.cqsdkjc.com/Article/details/6146145.shtml<br>
+www.m.cqsdkjc.com/Article/details/1997469.shtml<br>
+www.m.cqsdkjc.com/Article/details/6276926.shtml<br>
+www.m.cqsdkjc.com/Article/details/5601622.shtml<br>
+www.m.cqsdkjc.com/Article/details/1183032.shtml<br>
+www.m.cqsdkjc.com/Article/details/0798535.shtml<br>
+www.m.cqsdkjc.com/Article/details/8787867.shtml<br>
+www.m.cqsdkjc.com/Article/details/9956225.shtml<br>
+www.m.cqsdkjc.com/Article/details/4946621.shtml<br>
+www.m.cqsdkjc.com/Article/details/9511511.shtml<br>
+www.m.cqsdkjc.com/Article/details/3590902.shtml<br>
+www.m.cqsdkjc.com/Article/details/4799805.shtml<br>
+www.m.cqsdkjc.com/Article/details/0454933.shtml<br>
+www.m.cqsdkjc.com/Article/details/1147125.shtml<br>
+www.m.cqsdkjc.com/Article/details/8790891.shtml<br>
+www.m.cqsdkjc.com/Article/details/9149348.shtml<br>
+www.m.cqsdkjc.com/Article/details/9386131.shtml<br>
+www.m.cqsdkjc.com/Article/details/1793046.shtml<br>
+www.m.cqsdkjc.com/Article/details/7661801.shtml<br>
+www.m.cqsdkjc.com/Article/details/3104392.shtml<br>
+www.m.cqsdkjc.com/Article/details/6216084.shtml<br>
+www.m.cqsdkjc.com/Article/details/0275586.shtml<br>
+www.m.cqsdkjc.com/Article/details/2711555.shtml<br>
+www.m.cqsdkjc.com/Article/details/2433139.shtml<br>
+www.m.cqsdkjc.com/Article/details/3585081.shtml<br>
+www.m.cqsdkjc.com/Article/details/2149415.shtml<br>
+www.m.cqsdkjc.com/Article/details/0271835.shtml<br>
+www.m.cqsdkjc.com/Article/details/6409673.shtml<br>
+www.m.cqsdkjc.com/Article/details/7608029.shtml<br>
+www.m.cqsdkjc.com/Article/details/8062505.shtml<br>
+www.m.cqsdkjc.com/Article/details/7860384.shtml<br>
+www.m.cqsdkjc.com/Article/details/3617638.shtml<br>
+www.m.cqsdkjc.com/Article/details/2786338.shtml<br>
+www.m.cqsdkjc.com/Article/details/3162127.shtml<br>
+www.m.cqsdkjc.com/Article/details/9116337.shtml<br>
+www.m.cqsdkjc.com/Article/details/9055861.shtml<br>
+www.m.cqsdkjc.com/Article/details/1360141.shtml<br>
+www.m.cqsdkjc.com/Article/details/4836668.shtml<br>
+www.m.cqsdkjc.com/Article/details/4712191.shtml<br>
+www.m.cqsdkjc.com/Article/details/8572978.shtml<br>
+www.m.cqsdkjc.com/Article/details/3792215.shtml<br>
+www.m.cqsdkjc.com/Article/details/1271952.shtml<br>
+www.m.cqsdkjc.com/Article/details/2135382.shtml<br>
+www.m.cqsdkjc.com/Article/details/2443022.shtml<br>
+www.m.cqsdkjc.com/Article/details/1190189.shtml<br>
+www.m.cqsdkjc.com/Article/details/7791280.shtml<br>
+www.m.cqsdkjc.com/Article/details/8304884.shtml<br>
+www.m.cqsdkjc.com/Article/details/2845739.shtml<br>
+www.m.cqsdkjc.com/Article/details/4570110.shtml<br>
+www.m.cqsdkjc.com/Article/details/6578498.shtml<br>
+www.m.cqsdkjc.com/Article/details/4752449.shtml<br>
+www.m.cqsdkjc.com/Article/details/1330541.shtml<br>
+www.m.cqsdkjc.com/Article/details/9859931.shtml<br>
+www.m.cqsdkjc.com/Article/details/2971694.shtml<br>
+www.m.cqsdkjc.com/Article/details/1201872.shtml<br>
+www.m.cqsdkjc.com/Article/details/8352314.shtml<br>
+www.m.cqsdkjc.com/Article/details/7431082.shtml<br>
+www.m.cqsdkjc.com/Article/details/3335606.shtml<br>
+www.m.cqsdkjc.com/Article/details/2786651.shtml<br>
+www.m.cqsdkjc.com/Article/details/2090032.shtml<br>
+www.m.cqsdkjc.com/Article/details/3174397.shtml<br>
+www.m.cqsdkjc.com/Article/details/0163737.shtml<br>
+www.m.cqsdkjc.com/Article/details/1280708.shtml<br>
+www.m.cqsdkjc.com/Article/details/3762548.shtml<br>
+www.m.cqsdkjc.com/Article/details/6194512.shtml<br>
+www.m.cqsdkjc.com/Article/details/7273511.shtml<br>
+www.m.cqsdkjc.com/Article/details/9099144.shtml<br>
+www.m.cqsdkjc.com/Article/details/9433215.shtml<br>
+www.m.cqsdkjc.com/Article/details/6800407.shtml<br>
+www.m.cqsdkjc.com/Article/details/3533986.shtml<br>
+www.m.cqsdkjc.com/Article/details/6635914.shtml<br>
+www.m.cqsdkjc.com/Article/details/2723736.shtml<br>
+www.m.cqsdkjc.com/Article/details/0914177.shtml<br>
+www.m.cqsdkjc.com/Article/details/8208164.shtml<br>
+www.m.cqsdkjc.com/Article/details/2499618.shtml<br>
+www.m.cqsdkjc.com/Article/details/8016213.shtml<br>
+www.m.cqsdkjc.com/Article/details/0803028.shtml<br>
+www.m.cqsdkjc.com/Article/details/5762682.shtml<br>
+www.m.cqsdkjc.com/Article/details/9353380.shtml<br>
+www.m.cqsdkjc.com/Article/details/8228563.shtml<br>
+www.m.cqsdkjc.com/Article/details/7219386.shtml<br>
+www.m.cqsdkjc.com/Article/details/1718543.shtml<br>
+www.m.cqsdkjc.com/Article/details/3090364.shtml<br>
+www.m.cqsdkjc.com/Article/details/4218654.shtml<br>
+www.m.cqsdkjc.com/Article/details/2360136.shtml<br>
+www.m.cqsdkjc.com/Article/details/2254194.shtml<br>
+www.m.cqsdkjc.com/Article/details/0244766.shtml<br>
+www.m.cqsdkjc.com/Article/details/0514337.shtml<br>
+www.m.cqsdkjc.com/Article/details/2622865.shtml<br>
+www.m.cqsdkjc.com/Article/details/7640305.shtml<br>
+www.m.cqsdkjc.com/Article/details/0862844.shtml<br>
+www.m.cqsdkjc.com/Article/details/1210339.shtml<br>
+www.m.cqsdkjc.com/Article/details/4225704.shtml<br>
+www.m.cqsdkjc.com/Article/details/8873611.shtml<br>
+www.m.cqsdkjc.com/Article/details/1725132.shtml<br>
+www.m.cqsdkjc.com/Article/details/3271137.shtml<br>
+www.m.cqsdkjc.com/Article/details/0230930.shtml<br>
+www.m.cqsdkjc.com/Article/details/0116730.shtml<br>
+www.m.cqsdkjc.com/Article/details/2151465.shtml<br>
+www.m.cqsdkjc.com/Article/details/9109914.shtml<br>
+www.m.cqsdkjc.com/Article/details/9730740.shtml<br>
+www.m.cqsdkjc.com/Article/details/5622598.shtml<br>
+www.m.cqsdkjc.com/Article/details/1387765.shtml<br>
+www.m.cqsdkjc.com/Article/details/4540179.shtml<br>
+www.m.cqsdkjc.com/Article/details/0979836.shtml<br>
+www.m.cqsdkjc.com/Article/details/5710445.shtml<br>
+www.m.cqsdkjc.com/Article/details/2391732.shtml<br>
+www.m.cqsdkjc.com/Article/details/1681887.shtml<br>
+www.m.cqsdkjc.com/Article/details/7514953.shtml<br>
+www.m.cqsdkjc.com/Article/details/2106588.shtml<br>
+www.m.cqsdkjc.com/Article/details/1698799.shtml<br>
+www.m.cqsdkjc.com/Article/details/8135161.shtml<br>
+www.m.cqsdkjc.com/Article/details/7732987.shtml<br>
+www.m.cqsdkjc.com/Article/details/9186095.shtml<br>
+www.m.cqsdkjc.com/Article/details/6720161.shtml<br>
+www.m.cqsdkjc.com/Article/details/2049962.shtml<br>
+www.m.cqsdkjc.com/Article/details/9523359.shtml<br>
+www.m.cqsdkjc.com/Article/details/4849669.shtml<br>
+www.m.cqsdkjc.com/Article/details/9736572.shtml<br>
+www.m.cqsdkjc.com/Article/details/7727816.shtml<br>
+www.m.cqsdkjc.com/Article/details/3492228.shtml<br>
+www.m.cqsdkjc.com/Article/details/2007038.shtml<br>
+www.m.cqsdkjc.com/Article/details/4502066.shtml<br>
+www.m.cqsdkjc.com/Article/details/2068109.shtml<br>
+www.m.cqsdkjc.com/Article/details/7546574.shtml<br>
+www.m.cqsdkjc.com/Article/details/2914194.shtml<br>
+www.m.cqsdkjc.com/Article/details/0137039.shtml<br>
+www.m.cqsdkjc.com/Article/details/7329212.shtml<br>
+www.m.cqsdkjc.com/Article/details/0921084.shtml<br>
+www.m.cqsdkjc.com/Article/details/4548406.shtml<br>
+www.m.cqsdkjc.com/Article/details/6572398.shtml<br>
+www.m.cqsdkjc.com/Article/details/9129952.shtml<br>
+www.m.cqsdkjc.com/Article/details/7694422.shtml<br>
+www.m.cqsdkjc.com/Article/details/2392684.shtml<br>
+www.m.cqsdkjc.com/Article/details/1501455.shtml<br>
+www.m.cqsdkjc.com/Article/details/9068835.shtml<br>
+www.m.cqsdkjc.com/Article/details/2739963.shtml<br>
+www.m.cqsdkjc.com/Article/details/5313277.shtml<br>
+www.m.cqsdkjc.com/Article/details/1368467.shtml<br>
+www.m.cqsdkjc.com/Article/details/4587911.shtml<br>
+www.m.cqsdkjc.com/Article/details/0808564.shtml<br>
+www.m.cqsdkjc.com/Article/details/9778107.shtml<br>
+www.m.cqsdkjc.com/Article/details/7218753.shtml<br>
+www.m.cqsdkjc.com/Article/details/7940210.shtml<br>
+www.m.cqsdkjc.com/Article/details/0987569.shtml<br>
+www.m.cqsdkjc.com/Article/details/7984981.shtml<br>
+www.m.cqsdkjc.com/Article/details/4099917.shtml<br>
+www.m.cqsdkjc.com/Article/details/1612944.shtml<br>
+www.m.cqsdkjc.com/Article/details/6571584.shtml<br>
+www.m.cqsdkjc.com/Article/details/7257252.shtml<br>
+www.m.cqsdkjc.com/Article/details/3576397.shtml<br>
+www.m.cqsdkjc.com/Article/details/3123554.shtml<br>
+www.m.cqsdkjc.com/Article/details/2169560.shtml<br>
+www.m.cqsdkjc.com/Article/details/1928399.shtml<br>
+www.m.cqsdkjc.com/Article/details/2305219.shtml<br>
+www.m.cqsdkjc.com/Article/details/6877985.shtml<br>
+www.m.cqsdkjc.com/Article/details/9629286.shtml<br>
+www.m.cqsdkjc.com/Article/details/7588806.shtml<br>
+www.m.cqsdkjc.com/Article/details/6807795.shtml<br>
+www.m.cqsdkjc.com/Article/details/8205775.shtml<br>
+www.m.cqsdkjc.com/Article/details/2031163.shtml<br>
+www.m.cqsdkjc.com/Article/details/8244230.shtml<br>
+www.m.cqsdkjc.com/Article/details/3857791.shtml<br>
+www.m.cqsdkjc.com/Article/details/1340543.shtml<br>
+www.m.cqsdkjc.com/Article/details/6454752.shtml<br>
+www.m.cqsdkjc.com/Article/details/6704873.shtml<br>
+www.m.cqsdkjc.com/Article/details/9476219.shtml<br>
+www.m.cqsdkjc.com/Article/details/6752975.shtml<br>
+www.m.cqsdkjc.com/Article/details/1912456.shtml<br>
+www.m.cqsdkjc.com/Article/details/0992811.shtml<br>
+www.m.cqsdkjc.com/Article/details/7211444.shtml<br>
+www.m.cqsdkjc.com/Article/details/1983354.shtml<br>
+www.m.cqsdkjc.com/Article/details/1999692.shtml<br>
+www.m.cqsdkjc.com/Article/details/8769875.shtml<br>
+www.m.cqsdkjc.com/Article/details/1944210.shtml<br>
+www.m.cqsdkjc.com/Article/details/7804700.shtml<br>
+www.m.cqsdkjc.com/Article/details/9540072.shtml<br>
+www.m.cqsdkjc.com/Article/details/1092408.shtml<br>
+www.m.cqsdkjc.com/Article/details/6830385.shtml<br>
+www.m.cqsdkjc.com/Article/details/7123282.shtml<br>
+www.m.cqsdkjc.com/Article/details/0255860.shtml<br>
+www.m.cqsdkjc.com/Article/details/1762563.shtml<br>
+www.m.cqsdkjc.com/Article/details/5762927.shtml<br>
+www.m.cqsdkjc.com/Article/details/5862735.shtml<br>
+www.m.cqsdkjc.com/Article/details/3466296.shtml<br>
+www.m.cqsdkjc.com/Article/details/9778846.shtml<br>
+www.m.cqsdkjc.com/Article/details/2039715.shtml<br>
+www.m.cqsdkjc.com/Article/details/7398144.shtml<br>
+www.m.cqsdkjc.com/Article/details/2738171.shtml<br>
+www.m.cqsdkjc.com/Article/details/8768505.shtml<br>
+www.m.cqsdkjc.com/Article/details/0514415.shtml<br>
+www.m.cqsdkjc.com/Article/details/2380982.shtml<br>
+www.m.cqsdkjc.com/Article/details/9214848.shtml<br>
+www.m.cqsdkjc.com/Article/details/7471957.shtml<br>
+www.m.cqsdkjc.com/Article/details/1254813.shtml<br>
+www.m.cqsdkjc.com/Article/details/9811486.shtml<br>
+www.m.cqsdkjc.com/Article/details/9134871.shtml<br>
+www.m.cqsdkjc.com/Article/details/0529841.shtml<br>
+www.m.cqsdkjc.com/Article/details/3543090.shtml<br>
+www.m.cqsdkjc.com/Article/details/9809657.shtml<br>
+www.m.cqsdkjc.com/Article/details/8500252.shtml<br>
+www.m.cqsdkjc.com/Article/details/5980954.shtml<br>
+www.m.cqsdkjc.com/Article/details/8094032.shtml<br>
+www.m.cqsdkjc.com/Article/details/4623555.shtml<br>
+www.m.cqsdkjc.com/Article/details/2438547.shtml<br>
+www.m.cqsdkjc.com/Article/details/4943328.shtml<br>
+www.m.cqsdkjc.com/Article/details/6585933.shtml<br>
+www.m.cqsdkjc.com/Article/details/4060986.shtml<br>
+www.m.cqsdkjc.com/Article/details/5997009.shtml<br>
+www.m.cqsdkjc.com/Article/details/1466113.shtml<br>
+www.m.cqsdkjc.com/Article/details/9806504.shtml<br>
+www.m.cqsdkjc.com/Article/details/3157437.shtml<br>
+www.m.cqsdkjc.com/Article/details/5335143.shtml<br>
+www.m.cqsdkjc.com/Article/details/7686634.shtml<br>
+www.m.cqsdkjc.com/Article/details/9987104.shtml<br>
+www.m.cqsdkjc.com/Article/details/3269104.shtml<br>
+www.m.cqsdkjc.com/Article/details/6576369.shtml<br>
+www.m.cqsdkjc.com/Article/details/1906401.shtml<br>
+www.m.cqsdkjc.com/Article/details/8654493.shtml<br>
+www.m.cqsdkjc.com/Article/details/5469206.shtml<br>
+www.m.cqsdkjc.com/Article/details/4587736.shtml<br>
+www.m.cqsdkjc.com/Article/details/2421942.shtml<br>
+www.m.cqsdkjc.com/Article/details/5452523.shtml<br>
+www.m.cqsdkjc.com/Article/details/9132206.shtml<br>
+www.m.cqsdkjc.com/Article/details/1139804.shtml<br>
+www.m.cqsdkjc.com/Article/details/0654568.shtml<br>
+www.m.cqsdkjc.com/Article/details/8653586.shtml<br>
+www.m.cqsdkjc.com/Article/details/9335834.shtml<br>
+www.m.cqsdkjc.com/Article/details/5369169.shtml<br>
+www.m.cqsdkjc.com/Article/details/2175705.shtml<br>
+www.m.cqsdkjc.com/Article/details/7950985.shtml<br>
+www.m.cqsdkjc.com/Article/details/4610763.shtml<br>
+www.m.cqsdkjc.com/Article/details/7257216.shtml<br>
+www.m.cqsdkjc.com/Article/details/5324669.shtml<br>
+www.m.cqsdkjc.com/Article/details/4005327.shtml<br>
+www.m.cqsdkjc.com/Article/details/6493549.shtml<br>
+www.m.cqsdkjc.com/Article/details/9474955.shtml<br>
+www.m.cqsdkjc.com/Article/details/5787052.shtml<br>
+www.m.cqsdkjc.com/Article/details/7945141.shtml<br>
+www.m.cqsdkjc.com/Article/details/7214026.shtml<br>
+www.m.cqsdkjc.com/Article/details/8779038.shtml<br>
+www.m.cqsdkjc.com/Article/details/1619988.shtml<br>
+www.m.cqsdkjc.com/Article/details/9006295.shtml<br>
+www.m.cqsdkjc.com/Article/details/1685248.shtml<br>
+www.m.cqsdkjc.com/Article/details/4587046.shtml<br>
+www.m.cqsdkjc.com/Article/details/5652247.shtml<br>
+www.m.cqsdkjc.com/Article/details/6277037.shtml<br>
+www.m.cqsdkjc.com/Article/details/2681071.shtml<br>
+www.m.cqsdkjc.com/Article/details/2480435.shtml<br>
+www.m.cqsdkjc.com/Article/details/5766882.shtml<br>
+www.m.cqsdkjc.com/Article/details/6406925.shtml<br>
+www.m.cqsdkjc.com/Article/details/2680385.shtml<br>
+www.m.cqsdkjc.com/Article/details/4299689.shtml<br>
+www.m.cqsdkjc.com/Article/details/1059029.shtml<br>
+www.m.cqsdkjc.com/Article/details/2069965.shtml<br>
+www.m.cqsdkjc.com/Article/details/5739927.shtml<br>
+www.m.cqsdkjc.com/Article/details/2615591.shtml<br>
+www.m.cqsdkjc.com/Article/details/1795620.shtml<br>
+www.m.cqsdkjc.com/Article/details/2850102.shtml<br>
+www.m.cqsdkjc.com/Article/details/7945509.shtml<br>
+www.m.cqsdkjc.com/Article/details/3548556.shtml<br>
+www.m.cqsdkjc.com/Article/details/2668469.shtml<br>
+www.m.cqsdkjc.com/Article/details/4503419.shtml<br>
+www.m.cqsdkjc.com/Article/details/8767474.shtml<br>
+www.m.cqsdkjc.com/Article/details/1373940.shtml<br>
+www.m.cqsdkjc.com/Article/details/4092447.shtml<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2521:02:26
